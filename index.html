@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BRUK — Cursor Hero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="hero" id="hero">
+    <canvas id="characterCanvas" aria-label="BRUK interactivo"></canvas>
+
+    <header class="nav">
+      <div class="brand">ERES CREATIVO<span>.</span></div>
+      <nav>
+        <a href="#trabajo">Trabajo</a>
+        <a href="#marca">Marca</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <section class="copy">
+      <p class="eyebrow">PERSONAJE INTERACTIVO</p>
+      <h1>BRUK<span>.</span></h1>
+      <p class="description">
+        Mueve el cursor. BRUK te sigue con la mirada.
+      </p>
+      <div class="actions">
+        <button class="primary">Ver proyecto <span>↗</span></button>
+        <button class="secondary">Conocer BRUK</button>
+      </div>
+    </section>
+
+    <div class="hint" id="hint">MUEVE EL CURSOR</div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
