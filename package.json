@@ -1,0 +1,29 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "node tests/run_tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ByEduardo05/BRUK_CURSOR_HERO.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ByEduardo05/BRUK_CURSOR_HERO/issues"
+  },
+  "homepage": "https://github.com/ByEduardo05/BRUK_CURSOR_HERO#readme",
+  "dependencies": {
+    "canvas": "^3.2.3",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "pdfkit": "^0.20.2"
+  }
+}

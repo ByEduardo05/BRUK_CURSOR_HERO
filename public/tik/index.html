@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIK MASTER — Sistema Operativo Empresarial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+  <!-- SIDEBAR NAVEGACIÓN -->
+  <aside class="sidebar">
+    <div class="brand-header">
+      <div class="brand-badge">TIK</div>
+      <div class="brand-text">
+        <h1>TIK MASTER</h1>
+        <span>Encargado Virtual</span>
+      </div>
+    </div>
+
+    <nav class="nav-menu">
+      <div class="nav-section-title">Comando Principal</div>
+      <a class="nav-item active" data-view="chatView">
+        <span class="icon">💬</span> Centro Conversacional
+      </a>
+      <a class="nav-item" data-view="quotesView">
+        <span class="icon">⚡</span> Cotizador Inteligente
+      </a>
+      <a class="nav-item" data-view="advisorView">
+        <span class="icon">🎯</span> Asesor Comercial
+      </a>
+
+      <div class="nav-section-title">Operación y Finanzas</div>
+      <a class="nav-item" data-view="financialView">
+        <span class="icon">📊</span> Motor Financiero
+      </a>
+      <a class="nav-item" data-view="warrantiesView">
+        <span class="icon">🛡️</span> Centro de Garantías
+      </a>
+      <a class="nav-item" data-view="documentsView">
+        <span class="icon">📄</span> Generador de Documentos
+      </a>
+
+      <div class="nav-section-title">Cerebro Empresarial</div>
+      <a class="nav-item" data-view="knowledgeView">
+        <span class="icon">🧠</span> Base de Conocimiento
+      </a>
+      <a class="nav-item" data-view="clientsView">
+        <span class="icon">👥</span> Clientes y Sucursales
+      </a>
+      <a class="nav-item" data-view="settingsView">
+        <span class="icon">⚙️</span> Configuración e IA
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div>
+        <strong>Modo:</strong> Experto TIK
+      </div>
+      <div class="status-pill">
+        <span class="status-dot"></span> EN LÍNEA
+      </div>
+    </div>
+  </aside>
+
+  <!-- VIEWPORT PRINCIPAL -->
+  <main class="main-viewport">
+
+    <!-- BARRA SUPERIOR -->
+    <header class="top-bar">
+      <div class="view-heading">
+        <h2 id="currentViewTitle">Centro Conversacional: Pregúntale a TIK MASTER</h2>
+        <p id="currentViewSubtitle">Encargado virtual experto en decisiones comerciales, técnicas y operativas</p>
+      </div>
+      <div class="top-actions">
+        <button class="btn btn-secondary btn-sm" onclick="showQuickModal('backup')">💾 Respaldar</button>
+        <button class="btn btn-primary btn-sm" onclick="navTo('quotesView')">+ Nueva Cotización</button>
+      </div>
+    </header>
+
+    <!-- 1. VISTA: CENTRO CONVERSACIONAL (CHAT) -->
+    <section id="chatView" class="view-panel active">
+      <div class="chat-wrapper">
+        <div class="chat-messages-container">
+          <div class="chat-history" id="chatHistory">
+            <!-- Mensaje Inicial de Bienvenida -->
+            <div class="chat-msg">
+              <div class="avatar avatar-agent">TIK</div>
+              <div class="msg-bubble">
+                <p><strong>Hola, Propietario.</strong> Soy <strong>TIK MASTER</strong>, tu director comercial y encargado virtual para todo el negocio de Smart Displays.</p>
+                <p>Conozco a profundidad los 8 servicios oficiales, las especificaciones de hardware (NFC + QR en acrílico de 10×15 cm), las escalas de mayoreo, la política de garantías y los costos reales de fabricación.</p>
+                <p>¿Qué decisión o cotización revisamos el día de hoy?</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-input-bar">
+            <input type="text" id="chatInput" class="chat-input" placeholder="Pregúntame sobre cotizaciones, cafeterías, márgenes, garantías, Básico vs Plus..." onkeydown="handleChatKey(event)">
+            <button class="btn btn-primary" onclick="sendChatMessage()">Consultar</button>
+          </div>
+        </div>
+
+        <div class="chat-sidebar">
+          <h3 style="font-size: 13px; font-weight: 700; color: #fff;">Consultas Rápidas</h3>
+          <div class="quick-prompts">
+            <button class="quick-prompt-btn" onclick="sendPrompt('Necesito cotizar 20 displays para una cadena de restaurantes')">
+              🏢 Cotizar 20 displays para restaurantes
+            </button>
+            <button class="quick-prompt-btn" onclick="sendPrompt('¿Qué servicio le recomiendo a una estética?')">
+              💅 ¿Qué recomiendo a una estética?
+            </button>
+            <button class="quick-prompt-btn" onclick="sendPrompt('¿Qué diferencia hay entre Básico y Plus?')">
+              ⚡ Diferencia entre Básico y Plus
+            </button>
+            <button class="quick-prompt-btn" onclick="sendPrompt('¿Cuánto estoy ganando con esta venta?')">
+              💰 ¿Cuánto gano por display?
+            </button>
+            <button class="quick-prompt-btn" onclick="sendPrompt('¿Cuál es nuestra política de garantía?')">
+              🛡️ Política de garantía
+            </button>
+            <button class="quick-prompt-btn" onclick="sendPrompt('¿Qué pasa si un cliente pierde su display?')">
+              ❓ ¿Qué pasa si pierden el display?
+            </button>
+            <button class="quick-prompt-btn" onclick="sendPrompt('¿Cómo puedo vender TIK a un hotel?')">
+              🏨 ¿Cómo vender TIK a un hotel?
+            </button>
+          </div>
+
+          <div class="metric-box" style="margin-top: auto;">
+            <div class="metric-label">Seguridad de Conocimiento</div>
+            <div style="font-size: 12px; color: var(--brand-emerald); margin-top: 6px; font-weight: 600;">
+              ✓ Regla de Oro Activa: Sin alucinaciones. Datos oficiales estrictos.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. VISTA: COTIZADOR INTELIGENTE -->
+    <section id="quotesView" class="view-panel">
+      <div class="grid-2">
+        <!-- Formulario de Configuración de Cotización -->
+        <div class="card">
+          <div class="card-title">
+            <span>Configuración de Propuesta</span>
+            <span class="badge badge-rule">Motor Oficial TIK</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Cliente / Razón Social</label>
+            <input type="text" id="quoteClientName" class="form-input" placeholder="Ej. Grupo Restaurantero Sol">
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Giro Comercial</label>
+              <select id="quoteBusinessType" class="form-select" onchange="autoSuggestServices()">
+                <option value="Restaurantes">Restaurantes</option>
+                <option value="Cafeterías">Cafeterías</option>
+                <option value="Barberías">Barberías</option>
+                <option value="Estéticas">Estéticas y Spas</option>
+                <option value="Hoteles">Hoteles / Hostales</option>
+                <option value="Consultorios">Consultorios Médicos</option>
+                <option value="Tiendas">Tiendas y Boutiques</option>
+                <option value="Gimnasios">Gimnasios</option>
+                <option value="Servicios">Servicios Generales</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Cantidad de Displays Físicos</label>
+              <input type="number" id="quoteQuantity" class="form-input" value="1" min="1" oninput="runQuoteCalculation()">
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Servicio Oficial</label>
+              <select id="quoteService" class="form-select" onchange="runQuoteCalculation()">
+                <option value="srv-resenas">1. RESEÑAS</option>
+                <option value="srv-redes">2. REDES EN UN TOQUE</option>
+                <option value="srv-menu">3. MENÚ / CATÁLOGO</option>
+                <option value="srv-wifi">4. WIFI</option>
+                <option value="srv-tarjeta">5. TARJETA DIGITAL</option>
+                <option value="srv-delivery">6. DELIVERY</option>
+                <option value="srv-pagos">7. PAGOS</option>
+                <option value="srv-factura">8. FACTURA</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Nivel de Experiencia</label>
+              <select id="quoteTier" class="form-select" onchange="runQuoteCalculation()">
+                <option value="BASICO">BÁSICO (Acción directa incluida)</option>
+                <option value="PLUS">PLUS (+ $189 MXN provisional)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Descuento (%)</label>
+              <input type="number" id="quoteDiscount" class="form-input" placeholder="Auto según volumen" oninput="runQuoteCalculation()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Envío / Entrega ($ MXN)</label>
+              <input type="number" id="quoteShipping" class="form-input" value="0" oninput="runQuoteCalculation()">
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 16px; margin-top: 10px;">
+            <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; cursor: pointer;">
+              <input type="checkbox" id="quoteCustomDesign" onchange="runQuoteCalculation()"> Personalización Logotipo (+$250 MXN)
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; cursor: pointer;">
+              <input type="checkbox" id="quoteApplyTax" onchange="runQuoteCalculation()"> Aplicar IVA (16%)
+            </label>
+          </div>
+
+          <div style="margin-top: 20px; display: flex; gap: 10px;">
+            <button class="btn btn-primary" style="flex: 1;" onclick="saveAndGenerateQuote()">💾 Guardar y Emitir Cotización</button>
+            <button class="btn btn-secondary" onclick="exportQuotePDF()">📄 PDF</button>
+            <button class="btn btn-secondary" onclick="exportQuoteJPG()">🖼️ JPG</button>
+          </div>
+        </div>
+
+        <!-- Desglose Financiero y Detección Provisional -->
+        <div class="card" style="display: flex; flex-direction: column;">
+          <div class="card-title">
+            <span>Desglose Comercial y Rentabilidad</span>
+            <span id="quoteEscalaBadge" class="badge badge-official">Minorista</span>
+          </div>
+
+          <!-- Alerta de precios provisionales -->
+          <div id="quoteProvisionalAlert" style="background-color: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 6px; padding: 12px; margin-bottom: 14px; font-size: 12px; color: var(--brand-amber);">
+            ⚠️ <strong>Aviso de Provisionalidad:</strong> Los precios de lista ($299 MXN) y complemento Plus ($189 MXN) son referencias provisionales pendientes de confirmación final por el propietario.
+          </div>
+
+          <div class="grid-2" style="margin-bottom: 16px;">
+            <div class="metric-box">
+              <div class="metric-label">Subtotal Lista</div>
+              <div class="metric-value" id="quoteSubtotalDisplay">$299.00</div>
+              <div class="metric-sub" id="quoteUnitsDisplay">1 unidad física</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Total a Cotizar</div>
+              <div class="metric-value" style="color: var(--brand-blue);" id="quoteTotalDisplay">$299.00</div>
+              <div class="metric-sub" id="quoteDiscountDisplay">Sin descuento aplicado</div>
+            </div>
+          </div>
+
+          <div class="card" style="background-color: var(--bg-sidebar); border-color: var(--border-subtle); padding: 14px; margin-bottom: 16px;">
+            <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 8px;">
+              Análisis Interno de Rentabilidad
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; padding: 4px 0;">
+              <span>Costo Total Estimado:</span>
+              <strong id="quoteCostDisplay">$122.00 MXN</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; padding: 4px 0;">
+              <span>Utilidad Bruta Proyectada:</span>
+              <strong style="color: var(--brand-emerald);" id="quoteProfitDisplay">$177.00 MXN</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; padding: 4px 0;">
+              <span>Margen Porcentual Bruto:</span>
+              <strong id="quoteMarginDisplay">59.2%</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; padding: 4px 0;">
+              <span>Markup (Sobre Costo):</span>
+              <strong id="quoteMarkupDisplay">145.1%</strong>
+            </div>
+          </div>
+
+          <div style="margin-top: auto;">
+            <div style="font-size: 11px; color: var(--text-muted);">
+              * Todo display incluye chip NFC NTAG probado, código QR grabado, tarjeta física de garantía foliada y mini manual de uso.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. VISTA: ASESOR COMERCIAL POR GIRO Y OBJECIONES -->
+    <section id="advisorView" class="view-panel">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Recomendador por Giro Comercial</span>
+            <span class="badge badge-rule">Estrategia Comercial</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Selecciona el tipo de negocio</label>
+            <select id="advisorBizSelect" class="form-select" onchange="loadAdvisorData()">
+              <option value="Restaurantes">Restaurantes</option>
+              <option value="Cafeterías">Cafeterías</option>
+              <option value="Barberías">Barberías</option>
+              <option value="Estéticas y Spas">Estéticas y Spas</option>
+              <option value="Hoteles y Hostales">Hoteles y Hostales</option>
+              <option value="Consultorios y Clínicas">Consultorios y Clínicas</option>
+              <option value="Tiendas y Boutiques">Tiendas y Boutiques</option>
+              <option value="Gimnasios y Estudios">Gimnasios y Estudios</option>
+              <option value="Negocios de Servicios">Negocios de Servicios</option>
+              <option value="Profesionales Independientes">Profesionales Independientes</option>
+            </select>
+          </div>
+
+          <div id="advisorOutput" style="font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+            Cargando recomendaciones estratégicas...
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Superación de Objeciones Frecuentes</span>
+            <span class="badge badge-official">Argumentos Oficiales</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px;" id="objectionsList">
+            <!-- Cargado por JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. VISTA: MOTOR FINANCIERO -->
+    <section id="financialView" class="view-panel">
+      <div class="grid-4" style="margin-bottom: 20px;">
+        <div class="metric-box">
+          <div class="metric-label">Costo Directo Hardware</div>
+          <div class="metric-value" id="finHwCost">$88.00</div>
+          <div class="metric-sub">Acrílico, base, NFC, impresión UV</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Costo Operativo Unitario</div>
+          <div class="metric-value" id="finOpCost">$34.00</div>
+          <div class="metric-sub">Empaque, tarjeta, manual, armado</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Costo Total Unitario</div>
+          <div class="metric-value" style="color: var(--brand-amber);" id="finTotalCost">$122.00</div>
+          <div class="metric-sub">Suma directa de costos</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Margen Bruto de Utilidad</div>
+          <div class="metric-value" style="color: var(--brand-emerald);" id="finMarginVal">59.2%</div>
+          <div class="metric-sub">Markup: 145.1% s/costo</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Simulador de Precios y Descuento Máximo</span>
+            <span class="badge badge-rule">Control de Rentabilidad</span>
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Cantidad a Simular</label>
+              <input type="number" id="simQty" class="form-input" value="10" oninput="runFinSim()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Precio Unitario ($ MXN)</label>
+              <input type="number" id="simPrice" class="form-input" value="299" oninput="runFinSim()">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Descuento (%)</label>
+            <input type="number" id="simDiscount" class="form-input" value="18" oninput="runFinSim()">
+          </div>
+
+          <div id="simResults" class="card" style="background-color: var(--bg-sidebar); border-color: var(--border-subtle); padding: 14px;">
+            <!-- Simulación Dinámica -->
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Estructura de Componentes de Costo</span>
+            <span class="badge badge-provisional">Referencias Provisionales</span>
+          </div>
+          <div class="table-responsive">
+            <table class="tik-table">
+              <thead>
+                <tr>
+                  <th>Concepto</th>
+                  <th>Categoría</th>
+                  <th>Costo Estimado</th>
+                  <th>Estatus</th>
+                </tr>
+              </thead>
+              <tbody id="finCostTableBody">
+                <!-- Llenado dinámico -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. VISTA: CENTRO DE GARANTÍAS -->
+    <section id="warrantiesView" class="view-panel">
+      <div class="card" style="margin-bottom: 20px;">
+        <div class="card-title">
+          <span>Registro de Nueva Póliza de Garantía</span>
+          <span class="badge badge-official">30 Días Estándar</span>
+        </div>
+        <div class="grid-3">
+          <div class="form-group">
+            <label class="form-label">Cliente</label>
+            <input type="text" id="warClient" class="form-input" placeholder="Nombre de cliente o negocio">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Teléfono / WhatsApp</label>
+            <input type="text" id="warPhone" class="form-input" placeholder="+52 ...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Número de Pedido / Displays</label>
+            <input type="text" id="warOrder" class="form-input" placeholder="ORD-001 (Cant: 1)">
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="createWarranty()">🛡️ Registrar Garantía y Emitir Certificado</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>Pólizas e Incidencias Registradas</span>
+        </div>
+        <div class="table-responsive">
+          <table class="tik-table">
+            <thead>
+              <tr>
+                <th>Folio</th>
+                <th>Cliente</th>
+                <th>Producto</th>
+                <th>Entrega</th>
+                <th>Vigencia Fin</th>
+                <th>Estatus</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="warrantiesTableBody">
+              <!-- Cargado dinámico -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. VISTA: GENERADOR UNIVERSAL DE DOCUMENTOS -->
+    <section id="documentsView" class="view-panel">
+      <div class="card" style="margin-bottom: 20px;">
+        <div class="card-title">
+          <span>Catálogo Universal: Los 16 Documentos Oficiales TIK</span>
+          <span class="badge badge-official">PDF Vectorial + JPG HD</span>
+        </div>
+        <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 16px;">
+          Cada documento se genera desde los datos del sistema con estética ejecutiva TIK (Negro, Acero, Blanco y Cyan). Descarga inmediata en PDF formal o JPG de alta fidelidad optimizado para WhatsApp.
+        </p>
+
+        <div class="grid-4" id="docTypesGrid">
+          <!-- 16 documentos renderizados dinámicamente -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. VISTA: BASE DE CONOCIMIENTO (A - U) -->
+    <section id="knowledgeView" class="view-panel">
+      <div class="card" style="margin-bottom: 20px;">
+        <div class="card-title">
+          <span>Cerebro TIK: 21 Secciones de Conocimiento Empresarial (A - U)</span>
+          <div style="display: flex; gap: 8px;">
+            <select id="kbFilterStatus" class="form-select" style="width: auto; padding: 4px 8px; font-size: 11px;" onchange="loadKnowledgeData()">
+              <option value="">Todos los Estatus</option>
+              <option value="OFICIAL">Oficiales Confirmados</option>
+              <option value="PROVISIONAL">Provisionales</option>
+              <option value="REGLA_PROPIETARIO">Reglas de Propietario</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="tik-table">
+            <thead>
+              <tr>
+                <th>Sec</th>
+                <th>Título</th>
+                <th>Categoría</th>
+                <th>Estatus</th>
+                <th>Certeza</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="kbTableBody">
+              <!-- Llenado dinámico -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. VISTA: CLIENTES -->
+    <section id="clientsView" class="view-panel">
+      <div class="card">
+        <div class="card-title">
+          <span>Directorio de Clientes y Cadenas</span>
+        </div>
+        <div class="table-responsive">
+          <table class="tik-table">
+            <thead>
+              <tr>
+                <th>Negocio</th>
+                <th>Contacto</th>
+                <th>Giro</th>
+                <th>Sucursales</th>
+                <th>Teléfono</th>
+                <th>Ciudad</th>
+              </tr>
+            </thead>
+            <tbody id="clientsTableBody">
+              <!-- Llenado dinámico -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. VISTA: CONFIGURACIÓN E IA -->
+    <section id="settingsView" class="view-panel">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">
+            <span>Configuración de Inteligencia Artificial</span>
+            <span class="badge badge-official">Seguridad Asegurada</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Proveedor de IA</label>
+            <select id="setAiProvider" class="form-select">
+              <option value="local">Motor Experto Autónomo TIK (Local sin API Key)</option>
+              <option value="openai">OpenAI (GPT-4o / GPT-4o-mini)</option>
+              <option value="anthropic">Anthropic (Claude 3.5 Sonnet)</option>
+              <option value="groq">Groq (Llama 3)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">API Key del Proveedor (Opcional - Almacenada en backend)</label>
+            <input type="password" id="setApiKey" class="form-input" placeholder="sk-...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">PIN de Propietario para Cambios Críticos</label>
+            <input type="password" id="setPin" class="form-input" placeholder="1234">
+          </div>
+          <button class="btn btn-primary" onclick="saveSettings()">Guardar Ajustes de IA</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>Historial de Auditoría de Operaciones</span>
+            <span class="badge badge-rule">Registro Permanente</span>
+          </div>
+          <div style="max-height: 380px; overflow-y: auto;" id="auditLogsContainer">
+            <!-- Cargado por JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
